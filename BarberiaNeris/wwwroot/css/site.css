@@ -1,0 +1,84 @@
+html, body {
+    background-color: #000;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.custom-navbar {
+    background-color: black;
+}
+
+footer {
+    color: #ffffff;
+    text-align: center;
+}
+
+.footer {
+    color: #ffffff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2, .footer {
+    font-family: 'Podkova', serif;
+}
+
+.fc-header-toolbar {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.fc-button {
+    background-color: #555555;
+    color: #FFFFFF;
+    border: none;
+}
+
+    .fc-button:hover {
+        background-color: #777777;
+    }
+
+.fc-day:hover {
+    background-color: #EFEFEF;
+}
+
+.fc-event {
+    background-color: #FF5733;
+    color: #FFFFFF;
+    border: none;
+}
+
+    .fc-event:hover {
+        background-color: #FF704D;
+    }
+
+[data-date="2023-08-29"] {
+    background-color: #FFD700;
+}
+
+/* Novas adições para horários disponíveis e selecionados */
+.fc-event.disponivel {
+    background-color: #00cc66; /* Verde */
+    border-color: #00994d; /* Verde escuro */
+}
+
+    .fc-event.disponivel.selected {
+        background-color: #006633 !important; /* Verde escuro */
+        border-color: #004d26 !important; /* Verde mais escuro */
+    }
+
+.fc-event.ocupado {
+    background-color: red;
+    border-color: darkred;
+}

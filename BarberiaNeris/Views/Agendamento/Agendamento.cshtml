@@ -1,0 +1,85 @@
+﻿<div class="container mt-5">
+    <h2 class="mb-4">Agendamento</h2>
+
+    <form id="bookingForm" method="post" action="/Agendamento/Agendamento">
+        <div class="row">
+            <!-- Informações do Cliente -->
+            <div class="col-md-6 mb-3">
+                <label for="name" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">Telefone:</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <!-- Serviços -->
+            <div class="col-md-6 mb-3">
+                <label for="service" class="form-label">Selecione o Serviço:</label>
+                <select class="form-select" id="service" name="service">
+                    <option value="cabelo">Cabelo</option>
+                    <option value="sobrancelha">Sobrancelha</option>
+                    <option value="barba">Barba</option>
+                    <option value="bigode">Bigode</option>
+                </select>
+            </div>
+
+            <!-- Barbeiros -->
+            <div class="col-md-6 mb-3">
+                <label for="barber" class="form-label">Selecione o Cabeleireiro:</label>
+                <select class="form-select" id="barber" name="barber">
+                    <option value="" selected>Selecione um barbeiro...</option> <!-- Opção padrão sem valor -->
+                    @foreach (var barbeiro in ViewBag.Barbeiros)
+                    {
+                        <option value="@barbeiro.BarbeiroID">@barbeiro.Nome</option>
+                    }
+                </select>
+                <!-- Botão de Agendar -->
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Agendar</button>
+                </div>
+            </div>
+
+
+            <!-- Agenda -->
+            <div class="col-md-6 mb-3">
+                <label for="appointment" class="form-label">Selecione um horário:</label>
+                <div id="calendarToolbar"></div>
+                <div id="calendar"></div>
+                <input type="hidden" class="form-control" id="appointment" name="appointment">
+            </div>
+        </div>
+    </form>
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: black" id="confirmationModalLabel">Agendamento Confirmado</h5>
+                    <button type="button" class="btn-close" style="color: black" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" style="color: black">
+                    Seu agendamento foi feito com sucesso! Agradecemos a preferência.
+                    <div class="mt-3 text-center">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var agendamentoSucesso = @Json.Serialize(ViewBag.AgendamentoSucesso);
+</script>

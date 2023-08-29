@@ -1,0 +1,164 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div id="home">
+    <div class="container mt-5">
+        <div>
+            <div class="row">
+                <!-- Coluna do Carrossel -->
+                <div class="col-md-6">
+                    <div id="carouselsobreNos" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="~/imagens/carossel2.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/imagens/Carrosel1.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/imagens/carossel2.png" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <!-- Controles do Carrossel -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselsobreNos" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselsobreNos" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Próximo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coluna do Texto -->
+                <div class="col-md-6 p-3 d-flex flex-column justify-content-center">
+                    <div class="text-center mb-5">
+                        <h2>Barbearia Neris</h2>
+                    </div>
+                    <p class="text-center" style="font-family: 'Podkova';">
+                        Referencia em qualidade de corte!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="sobre">
+    <div class="container mt-5">
+        <div class="row">
+
+            <!-- Coluna da Imagem -->
+            <div class="col-md-6">
+                <img src="~/imagens/local.png" class="d-block w-100" alt="Sobre Nós">
+            </div>
+
+            <!-- Coluna do Texto -->
+            <div class="col-md-6">
+                <div class="p-3">
+                    <h2>Conheça a Barbearia Neris</h2>
+                    <p>
+                        Fundada em 1995, a Barbearia Neris é mais do que apenas um local para cortar o cabelo. É um santuário de estilo clássico e masculinidade. Localizada no coração da cidade, temos atendido os homens mais estilosos por mais de duas décadas. Oferecemos uma experiência única de barbearia, onde os homens podem relaxar em um ambiente masculino enquanto desfrutam de serviços de alta qualidade.
+                    </p>
+                    <p>
+                        A nossa equipe é composta por barbeiros especializados e dedicados, que utilizam técnicas tradicionais aliadas às tendências modernas. Oferecemos uma variedade de serviços, incluindo cortes de cabelo clássicos, barbas estilizadas e tratamentos para a pele. Venha nos visitar e descubra o verdadeiro significado de um corte clássico!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="servicos" class="container mt-5">
+    <h2 class="text-center">Nossos Serviços</h2>
+
+    <div class="row mt-4">
+        <!-- Serviço Cabelo -->
+        <div class="col-md-3">
+            <div class="card">
+                <img src="https://www.reviewbox.com.br/wp-content/uploads/2019/05/ma%CC%81quina-de-cortar-cabelo.jpg" class="card-img-top" alt="Corte de Cabelo">
+                <div class="card-body">
+                    <h5 class="card-title">Cabelo</h5>
+                    <p class="card-text">Valor: R$30,00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serviço Sobrancelha -->
+        <div class="col-md-3">
+            <div class="card">
+                <img src="https://womenshealthbrasil.com.br/wp-content/uploads/sites/6/2016/09/shutterstock_298912115.jpg" class="card-img-top" alt="Sobrancelha">
+                <div class="card-body">
+                    <h5 class="card-title">Sobrancelha</h5>
+                    <p class="card-text">Valor: R$15,00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serviço Barba -->
+        <div class="col-md-3">
+            <div class="card">
+                <img src="https://womenshealthbrasil.com.br/wp-content/uploads/sites/6/2016/09/shutterstock_298912115.jpg" class="card-img-top" alt="Barba">
+                <div class="card-body">
+                    <h5 class="card-title">Barba</h5>
+                    <p class="card-text">Valor: R$20,00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serviço Bigode -->
+        <div class="col-md-3">
+            <div class="card">
+                <img src="https://womenshealthbrasil.com.br/wp-content/uploads/sites/6/2016/09/shutterstock_298912115.jpg" class="card-img-top" alt="Bigode">
+                <div class="card-body">
+                    <h5 class="card-title">Bigode</h5>
+                    <p class="card-text">Valor: R$20,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="barbeiros">
+    <div class="container mt-5">
+        <div class="text-center">
+            <h2>Nossos Barbeiros</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="~/imagens/BarbeiroNeris.jpeg" class="card-img-top" alt="Barbeiro 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Barbeiro 1</h5>
+                        <p class="card-text">Especializado em cortes clássicos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="~/imagens/BarbeiroRafael.jpeg" class="card-img-top" alt="Barbeiro 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Barbeiro 2</h5>
+                        <p class="card-text">Especializado em cortes modernos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="~/imagens/BarbeiroRuan.jpeg" class="card-img-top" alt="Barbeiro 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Barbeiro 3</h5>
+                        <p class="card-text">Especializado em cortes estilosos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

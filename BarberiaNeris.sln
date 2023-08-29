@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberiaNeris", "BarberiaNeris\BarberiaNeris.csproj", "{CB080534-9F99-4F26-A90C-4C10EEAE0F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{E05794ED-D16D-43A0-B433-17CBC35FC16A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{A846F460-548B-4EB4-99EE-7D6FB9AF9EDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB080534-9F99-4F26-A90C-4C10EEAE0F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB080534-9F99-4F26-A90C-4C10EEAE0F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB080534-9F99-4F26-A90C-4C10EEAE0F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB080534-9F99-4F26-A90C-4C10EEAE0F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05794ED-D16D-43A0-B433-17CBC35FC16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05794ED-D16D-43A0-B433-17CBC35FC16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05794ED-D16D-43A0-B433-17CBC35FC16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05794ED-D16D-43A0-B433-17CBC35FC16A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A846F460-548B-4EB4-99EE-7D6FB9AF9EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A846F460-548B-4EB4-99EE-7D6FB9AF9EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A846F460-548B-4EB4-99EE-7D6FB9AF9EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A846F460-548B-4EB4-99EE-7D6FB9AF9EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {413D5493-E0D1-46EC-9229-BF6A3D22F92D}
+	EndGlobalSection
+EndGlobal
