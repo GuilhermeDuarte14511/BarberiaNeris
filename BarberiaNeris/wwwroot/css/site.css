@@ -34,6 +34,28 @@ h2, .footer {
     font-family: 'Podkova', serif;
 }
 
+/* Estilo padrão para os cards */
+.card {
+    transition: transform 0.3s, filter 0.3s;
+    filter: brightness(100%);
+}
+
+    /* Zoom no card específico ao qual o mouse está sobreposto */
+    .card:hover {
+        transform: scale(1.01);
+        z-index: 2; /* Garante que o card em foco fique acima dos outros cards */
+    }
+
+/* Escurece todos os cards quando qualquer card é focado */
+.row:hover .card {
+    filter: brightness(50%);
+}
+
+/* Restaura o brilho do card específico ao qual o mouse está sobreposto */
+.row .card:hover {
+    filter: brightness(100%);
+}
+
 .fc-header-toolbar {
     background-color: #333333;
     color: #FFFFFF;
@@ -51,21 +73,23 @@ h2, .footer {
 
 .fc-day:hover {
     background-color: #EFEFEF;
+    cursor: pointer;
+}
+
+.fc-day {
+    background-color: transparent;
 }
 
 .fc-event {
-    background-color: #FF5733;
+    background-color: #777777;
     color: #FFFFFF;
     border: none;
 }
 
     .fc-event:hover {
-        background-color: #FF704D;
+        background-color: #555555;
     }
 
-[data-date="2023-08-29"] {
-    background-color: #FFD700;
-}
 
 /* Novas adições para horários disponíveis e selecionados */
 .fc-event.disponivel {

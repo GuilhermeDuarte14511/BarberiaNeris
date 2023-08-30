@@ -8,6 +8,12 @@ namespace Entities.Model
 {
     public class Agendamento
     {
+
+        public Agendamento()
+        {
+            AgendamentoServicos = new List<AgendamentoServico>();
+        }
+
         public int AgendamentoID { get; set; }
         public DateTime DataHora { get; set; }
         public string Servico { get; set; }
@@ -17,6 +23,8 @@ namespace Entities.Model
 
         public int BarbeiroID { get; set; }
         public Barbeiro Barbeiro { get; set; }
+        public decimal ValorTotal { get; set; }
+        public ICollection<AgendamentoServico> AgendamentoServicos { get; set; }
     }
 
 }

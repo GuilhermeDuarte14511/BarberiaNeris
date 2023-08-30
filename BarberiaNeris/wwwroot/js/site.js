@@ -95,3 +95,22 @@ $('#carouselBarbeiros').on('slide.bs.carousel', function (event) {
     var activeIndex = $(event.relatedTarget).index();
     $('#carouselBarbeirosText').carousel(activeIndex);
 });
+
+function atualizarTotal() {
+    let total = 0;
+    let checkboxes = document.getElementById('services').querySelectorAll("input[type='checkbox']:checked");
+    checkboxes.forEach(checkbox => {
+        switch (checkbox.value) {
+            case 'cabelo': total += 50; break;
+            case 'sobrancelha': total += 20; break;
+            case 'barba': total += 30; break;
+            case 'bigode': total += 15; break;
+        }
+    });
+    document.getElementById('totalValue').value = "R$" + total;
+}
+
+// Agora, chame essa função diretamente quando você passa o valor via parâmetro.
+atualizarTotal();
+
+    document.getElementById('services').addEventListener('change', atualizarTotal);

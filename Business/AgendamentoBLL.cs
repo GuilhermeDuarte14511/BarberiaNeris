@@ -16,7 +16,7 @@ namespace Business
             _context = context;
         }
 
-        public void Agendar(string name, string email, string phone, string service, int barber, DateTime appointment)
+        public void Agendar(string name, string email, string phone, List<string> services, int barber, DateTime appointment)
         {
             // Primeiro, verifique se o cliente já existe com base no e-mail
             var cliente = _context.Clientes.FirstOrDefault(c => c.Email == email);
@@ -43,8 +43,24 @@ namespace Business
                 ClienteID = cliente.ClienteID,
                 BarbeiroID = barbeiro.BarbeiroID,
                 DataHora = appointment,
-                Servico = service
+                ValorTotal = 0 // Inicialize com 0
             };
+
+            // Adicione os serviços ao agendamento e calcule o valor total
+            foreach (var serviceName in services)
+            {
+                var servico = _context.Servicos.FirstOrDefault(s => s.Nome == serviceName);
+                if (servico != null)
+                {
+                    agendamento.ValorTotal += servico.Preco;
+                    agendamento.Servico = string.Join(", ", services);
+                    agendamento.AgendamentoServicos.Add(new AgendamentoServico
+                    {
+                        ServicoID = servico.ServicoID
+
+                    });
+                }
+            }
 
             _context.Agendamentos.Add(agendamento);
 

@@ -21,16 +21,15 @@
 
             <!-- Serviços -->
             <div class="col-md-6 mb-3">
-                <label for="service" class="form-label">Selecione o Serviço:</label>
-                <select class="form-select" id="service" name="service">
-                    <option value="cabelo">Cabelo</option>
-                    <option value="sobrancelha">Sobrancelha</option>
-                    <option value="barba">Barba</option>
-                    <option value="bigode">Bigode</option>
-                </select>
+                <label for="service" class="form-label">Selecione os Serviços:</label>
+                <div id="services">
+                    <label><input type="checkbox" name="services[]" value="cabelo" @(ViewBag.ServicoSelecionado == "Cabelo" ? "checked" : "")> Cabelo - R$50</label><br>
+                    <label><input type="checkbox" name="services[]" value="sobrancelha" @(ViewBag.ServicoSelecionado == "Sobrancelha" ? "checked" : "")> Sobrancelha - R$20</label><br>
+                    <label><input type="checkbox" name="services[]" value="barba" @(ViewBag.ServicoSelecionado == "Barba" ? "checked" : "")> Barba - R$30</label><br>
+                    <label><input type="checkbox" name="services[]" value="bigode" @(ViewBag.ServicoSelecionado == "Bigode" ? "checked" : "")> Bigode - R$15</label><br>
+                </div>
             </div>
 
-            <!-- Barbeiros -->
             <div class="col-md-6 mb-3">
                 <label for="barber" class="form-label">Selecione o Cabeleireiro:</label>
                 <select class="form-select" id="barber" name="barber">
@@ -40,6 +39,13 @@
                         <option value="@barbeiro.BarbeiroID">@barbeiro.Nome</option>
                     }
                 </select>
+
+                <!-- Valor Total -->
+                <div class="mt-3">
+                    <label for="totalValue" class="form-label">Valor Total:</label>
+                    <input type="text" class="form-control" id="totalValue" name="totalValue" readonly>
+                </div>
+
                 <!-- Botão de Agendar -->
                 <div class="mt-3">
                     <button type="submit" class="btn btn-primary">Agendar</button>
@@ -55,6 +61,7 @@
                 <input type="hidden" class="form-control" id="appointment" name="appointment">
             </div>
         </div>
+
     </form>
     <!-- Modal de Confirmação -->
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
