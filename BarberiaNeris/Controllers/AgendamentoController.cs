@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System.Security.Claims;
 using System.Text;
 
 public class AgendamentoController : Controller
@@ -25,6 +26,21 @@ public class AgendamentoController : Controller
         var barbeiros = _context.Barbeiros.ToList();
         ViewBag.Barbeiros = barbeiros;
 
+        if (User.Identity.IsAuthenticated)
+        {
+            var clienteId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!string.IsNullOrEmpty(clienteId))
+            {
+                var cliente = _context.Clientes.Find(int.Parse(clienteId));
+                if (cliente != null)
+                {
+                    ViewBag.ClienteName = cliente.Nome;
+                    ViewBag.ClienteEmail = cliente.Email;
+                    ViewBag.ClientePhone = cliente.Telefone;
+                }
+            }
+        }
+
         ViewBag.ServicoSelecionado = servico;
 
         return View();
@@ -36,18 +52,18 @@ public class AgendamentoController : Controller
         var horariosOcupados = GetHorariosOcupados(barbeiroId);
 
         var horariosDisponiveis = new List<DateTime>();
-        for (int i = 0; i < 7; i++)
+        var dataInicio = DateTime.Now.Date;
+
+        for (int dia = 0; dia < 14; dia++) // Mostrar horários para os próximos 14 dias
         {
-            var data = DateTime.Now.Date.AddDays(i);
-            if (data.DayOfWeek != DayOfWeek.Sunday && data.DayOfWeek != DayOfWeek.Saturday)
+            var data = dataInicio.AddDays(dia);
+
+            for (int hora = 9; hora < 18; hora++) // Horário das 9 às 18
             {
-                for (int hora = 8; hora <= 18; hora++)
+                var horario = data.AddHours(hora);
+                if (!horariosOcupados.Contains(horario))
                 {
-                    var horario = data.AddHours(hora);
-                    if (!horariosOcupados.Contains(horario))
-                    {
-                        horariosDisponiveis.Add(horario);
-                    }
+                    horariosDisponiveis.Add(horario);
                 }
             }
         }
@@ -60,6 +76,7 @@ public class AgendamentoController : Controller
     }
 
 
+
     public List<DateTime> GetHorariosOcupados(int barbeiroId)
     {
         return _context.Agendamentos
@@ -69,10 +86,9 @@ public class AgendamentoController : Controller
     }
 
 
-
     [HttpPost]
     public IActionResult Agendamento(string name, string email, string phone, List<string> services, int barber, DateTime appointment)
-    {
+    {       
         _agendamentoBLL.Agendar(name, email, phone, services, barber, appointment);
 
         // Defina uma variável ViewBag para indicar que o agendamento foi bem-sucedido
@@ -91,6 +107,7 @@ public class AgendamentoController : Controller
 
         return View();
     }
+
 
 
     private async Task SendConfirmationEmail(string toEmail, string name, int barberId, List<string> services, DateTime appointment)

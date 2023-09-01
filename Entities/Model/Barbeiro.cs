@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace Entities.Model
-{
-    public class Barbeiro
+    namespace Entities.Model
     {
-        public int BarbeiroID { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; } 
-        public string Telefone { get; set; } 
-        public ICollection<Agendamento> Agendamentos { get; set; }
+        public class Barbeiro
+        {
+            public int BarbeiroID { get; set; }
+            public string Nome { get; set; }
+            public string Email { get; set; } 
+            public string Telefone { get; set; } 
+            public string? Senha { get; set; } 
+            public ICollection<Agendamento> Agendamentos { get; set; }
+        }
+
+
     }
-
-
-}

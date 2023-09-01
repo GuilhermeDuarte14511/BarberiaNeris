@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Barbearia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Podkova:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
 </head>
 
 <body>
@@ -27,21 +30,48 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto d-flex gap-5">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/#sobre">Sobre nós</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/#servicos">Serviços</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/#barbeiros">Nossos Barbeiros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Agendamento" asp-action="Agendamento">Agendamento</a>
-                        </li>
+                        @if (Context.User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-white">Olá, @Context.User.Identity.Name!</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Agendamento" asp-action="Agendamento">Agendamento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Cliente" asp-action="HistoricoAgendamentos">Histórico</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Login" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/#home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/#sobre">Sobre nós</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/#servicos">Serviços</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/#barbeiros">Nossos Barbeiros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Agendamento" asp-action="Agendamento">Agendamento</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Conta
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Entrar</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -53,6 +83,93 @@
         </main>
     </div>
 
+    <!-- Modal Entrar -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:black" id="loginModalLabel">Entrar</h5>
+                    <button type="button" style="color:black" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-controller="Login" asp-action="Login">
+                        <div class="mb-3">
+                            <label for="email" style="color: black" class="form-label">Email</label>
+                            <input type="email" name="email" style="color: black" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Insira seu email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" style="color:black" class="form-label">Senha</label>
+                            <div class="input-group">
+                                <input type="password" name="senha" style="color:black" class="form-control" id="senha" placeholder="Insira sua senha">
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i id="eyeIcon" class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:black" id="cadastroModalLabel">Cadastrar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="cadastroForm" method="post" action="/Login/CadastrarUsuario">
+                        <div class="mb-3">
+                            <label for="cadastroNome" style="color: black" class="form-label">Nome</label>
+                            <input type="text" style="color: black" class="form-control" id="cadastroNome" name="Nome" placeholder="Insira seu nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cadastroEmail" style="color: black" class="form-label">Email</label>
+                            <input type="email" style="color: black" class="form-control" id="cadastroEmail" name="Email" placeholder="Insira seu email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cadastroTelefone" style="color: black" class="form-label">Telefone</label>
+                            <input type="tel" style="color: black" class="form-control" id="cadastroTelefone" name="telefone" placeholder="insira seu telefone" required>
+                        </div>
+                        <label for="cadastroSenha" style="color: black" class="form-label">Senha</label>
+                        <div class="mb-3 input-group">
+                            <input type="password" style="color: black" class="form-control" id="cadastroSenha" name="Senha" placeholder="Insira uma senha" required>
+                            <button class="btn btn-outline-secondary" type="button" id="toggleCadastroPassword"><i class="fa fa-eye"></i></button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" style="color:black" id="successMessage" value="@TempData["SuccessMessage"]" />
+    <!-- Modal de Sucesso -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">Cadastro bem-sucedido!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <p style="color:black;">Cadastro feito com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <footer class="border-top footer">
         <div class="container-fluid">
             &copy; 2023 - Barbearia
@@ -60,9 +177,10 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

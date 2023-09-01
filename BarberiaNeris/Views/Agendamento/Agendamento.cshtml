@@ -6,17 +6,17 @@
             <!-- Informações do Cliente -->
             <div class="col-md-6 mb-3">
                 <label for="name" class="form-label">Nome:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="@ViewBag.ClienteName" required>
             </div>
 
             <div class="col-md-6 mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" value="@ViewBag.ClienteEmail" required>
             </div>
 
             <div class="col-md-6 mb-3">
                 <label for="phone" class="form-label">Telefone:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" required>
+                <input type="tel" class="form-control" id="phone" name="phone" value="@ViewBag.ClientePhone" required>
             </div>
 
             <!-- Serviços -->

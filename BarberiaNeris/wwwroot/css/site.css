@@ -106,3 +106,23 @@ h2, .footer {
     background-color: red;
     border-color: darkred;
 }
+
+
+/* Estilo para a tabela DataTables */
+table.dataTable.dark {
+    color: white; /* Cor do texto */
+    background-color: #333; /* Cor de fundo */
+    border-collapse: collapse;
+}
+
+    /* Estilo para as células do cabeçalho da tabela */
+    table.dataTable.dark thead th {
+        background-color: #222; /* Cor de fundo do cabeçalho */
+        border: 1px solid #444; /* Borda do cabeçalho */
+    }
+
+    /* Estilo para as células da tabela */
+    table.dataTable.dark td, table.dataTable.dark th {
+        border: 1px solid #444; /* Borda das células */
+        padding: 8px; /* Espaçamento interno */
+    }
