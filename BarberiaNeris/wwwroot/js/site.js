@@ -167,6 +167,13 @@
         }
     });
 
+    $(document).ready(function () {
+        var showUpdateModal = $('#showUpdateModal').val();
+        if (showUpdateModal) { // TempData armazena valores booleanos como 'True' ou 'False' em strings
+            $('#updateCadastroModal').modal('show');
+        }
+    });
+
     $.ajax({
         type: "GET",
         url: "/Cliente/GetHistoricoAgendamento",

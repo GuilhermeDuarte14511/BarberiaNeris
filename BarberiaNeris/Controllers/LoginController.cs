@@ -21,6 +21,7 @@ namespace BarberiaNeris.Controllers
         public async Task<IActionResult> Login(string email, string senha)
         {
             var cliente = _context.Clientes.FirstOrDefault(b => b.Email == email);
+
             if (cliente != null && BaseBLL.VerifyPassword(senha, cliente.Senha))
             {
                 var claims = new List<Claim>
@@ -59,6 +60,7 @@ namespace BarberiaNeris.Controllers
             // Verificar se já existe um usuário com o mesmo e-mail
             var clienteExistente = _context.Clientes.FirstOrDefault(b => b.Email == email);
 
+            
             if (clienteExistente == null)
             {
                 var senhaCriptografada = BaseBLL.HashPassword(senha);
@@ -78,12 +80,51 @@ namespace BarberiaNeris.Controllers
                 ViewBag.CadastroConcluido = true;
                 return RedirectToAction("Index", "Home"); // Redirecione para a página inicial após o cadastro
             }
+            else if(clienteExistente != null && clienteExistente.Senha == null)
+            {
+                // Atualize os campos do cliente existente
+                clienteExistente.Nome = nome;
+                clienteExistente.Email = email;
+                clienteExistente.Telefone = telefone;
+                clienteExistente.Senha = BaseBLL.HashPassword(senha);
+                // Persiste a atualização
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Cadastro feito com sucesso!";
+                ViewBag.CadastroConcluido = true;
+                return RedirectToAction("Index", "Home"); // Redirecione para a página inicial após o cadastro
+            }
             else
             {
                 ModelState.AddModelError(string.Empty, "Email já está em uso.");
                 return View(); // Retorna para a página de registro com a mensagem de erro.
             }
         }
+
+        [HttpPost]
+        public IActionResult UpdateCadastro(int clienteId, string nome, string email, string telefone, string senha)
+        {
+            var clienteExistente = _context.Clientes.FirstOrDefault(c => c.Email == email);
+
+            if (clienteExistente == null)
+            {
+                // Cliente não encontrado, trate o erro
+                ModelState.AddModelError(string.Empty, "Cliente não encontrado.");
+                return View(); // Retorna para a página de edição com a mensagem de erro.
+            }
+
+            // Atualize os campos do cliente existente
+            clienteExistente.Nome = nome;
+            clienteExistente.Email = email;
+            clienteExistente.Telefone = telefone;
+            clienteExistente.Senha = BaseBLL.HashPassword(senha);
+
+            // Persiste a atualização
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] = "Cadastro atualizado com sucesso!";
+            return RedirectToAction("Index", "Home");
+        }
+
 
         public async Task<IActionResult> Logout()
         {

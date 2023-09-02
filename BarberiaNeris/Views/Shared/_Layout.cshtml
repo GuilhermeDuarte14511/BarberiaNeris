@@ -168,6 +168,7 @@
     </div>
 
     <!-- Modal UpdateCadastro -->
+    <input type="hidden" id="showUpdateModal" value="@TempData["ShowUpdateModal"]">
     <div class="modal fade" id="updateCadastroModal" tabindex="-1" aria-labelledby="updateCadastroModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -179,15 +180,19 @@
                     <form method="post" asp-controller="Login" asp-action="UpdateCadastro">
                         <div class="mb-3">
                             <label for="updateNome" style="color: black" class="form-label">Nome</label>
-                            <input type="text" style="color: black" class="form-control" id="updateNome" name="Nome" placeholder="Insira seu nome" required>
+                            <input type="text" style="color: black" class="form-control" id="updateNome" name="Nome" value="" placeholder="Insira seu nome" required>
                         </div>
                         <div class="mb-3">
                             <label for="updateEmail" style="color: black" class="form-label">Email</label>
-                            <input type="email" style="color: black" class="form-control" id="updateEmail" name="Email" placeholder="Insira seu email" required>
+                            <input type="email" style="color: black" class="form-control" id="updateEmail" name="Email" value="" placeholder="Insira seu email" required>
                         </div>
                         <div class="mb-3">
                             <label for="updateTelefone" style="color: black" class="form-label">Telefone</label>
-                            <input type="tel" style="color: black" class="form-control" id="updateTelefone" name="telefone" placeholder="insira seu telefone" required>
+                            <input type="tel" style="color: black" class="form-control" id="updateTelefone" name="telefone" value="" placeholder="insira seu telefone" required>
+                        </div>
+                        <div class="mb-3 input-group">
+                            <input type="password" style="color: black" class="form-control" id="cadastroSenha" name="Senha" placeholder="Insira uma senha" required>
+                            <button class="btn btn-outline-secondary" type="button" id="toggleCadastroPassword"><i class="fa fa-eye"></i></button>
                         </div>
                         <!-- Você pode adicionar mais campos conforme necessário -->
                         <button type="submit" class="btn btn-primary">Atualizar</button>
