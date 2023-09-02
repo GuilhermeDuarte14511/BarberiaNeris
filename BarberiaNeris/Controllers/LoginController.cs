@@ -21,7 +21,6 @@ namespace BarberiaNeris.Controllers
         public async Task<IActionResult> Login(string email, string senha)
         {
             var cliente = _context.Clientes.FirstOrDefault(b => b.Email == email);
-
             if (cliente != null && BaseBLL.VerifyPassword(senha, cliente.Senha))
             {
                 var claims = new List<Claim>

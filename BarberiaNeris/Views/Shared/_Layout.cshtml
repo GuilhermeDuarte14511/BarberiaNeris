@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8" />
@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark custom-navbar border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark custom-navbar border-bottom box-shadow fixed-top">
             <div class="container d-flex align-items-center">
                 <!-- Logo da Barbearia -->
                 <a class="navbar-brand" href="/#home">
@@ -162,6 +162,36 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal UpdateCadastro -->
+    <div class="modal fade" id="updateCadastroModal" tabindex="-1" aria-labelledby="updateCadastroModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color:black" id="updateCadastroModalLabel">Atualizar Cadastro</h5>
+                    <button type="button" style="color:black" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-controller="Login" asp-action="UpdateCadastro">
+                        <div class="mb-3">
+                            <label for="updateNome" style="color: black" class="form-label">Nome</label>
+                            <input type="text" style="color: black" class="form-control" id="updateNome" name="Nome" placeholder="Insira seu nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateEmail" style="color: black" class="form-label">Email</label>
+                            <input type="email" style="color: black" class="form-control" id="updateEmail" name="Email" placeholder="Insira seu email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateTelefone" style="color: black" class="form-label">Telefone</label>
+                            <input type="tel" style="color: black" class="form-control" id="updateTelefone" name="telefone" placeholder="insira seu telefone" required>
+                        </div>
+                        <!-- Você pode adicionar mais campos conforme necessário -->
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </form>
                 </div>
             </div>
         </div>
